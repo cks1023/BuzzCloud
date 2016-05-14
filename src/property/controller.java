@@ -69,7 +69,7 @@ public class controller extends HttpServlet {
 		try{
 			//command.properties파일의 내용을 읽어옴
 			f = new FileInputStream(realPath); 
-			//command.properties의 내용을 Properties객체 pr에 저장
+			//command.properties의 내용을 Properties객체 에 저장
 			pr.load(f);
 		}catch (IOException e) {
 			e.printStackTrace();
@@ -113,13 +113,11 @@ public class controller extends HttpServlet {
 		// TODO Auto-generated method stub
 		requestPro(request, response);
 	}
-
 	
 	private void requestPro(
 			HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 
-		
 			String view = null;
 			commandAction com=null;
 			try {
