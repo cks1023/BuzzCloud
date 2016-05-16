@@ -1,6 +1,8 @@
 package javaBean;
 
 import java.sql.*;
+import property.constString;
+
 
 public class connectMysql {
 
@@ -9,11 +11,15 @@ public class connectMysql {
 		
 		Connection conn = null;
 		try {
-
 			
-			String jdbcUrl = "jdbc:mysql://localhost:3306/buzzcloud";
-			String dbId = "buzzcloud";
-			String dbPasswd = "rksk!@12";
+			constString url = constString.dbUrl;
+			constString id = constString.dbId;
+			constString pw = constString.dbPasswd;
+			
+			
+			String jdbcUrl = url.getString();
+			String dbId = id.getString();
+			String dbPasswd = pw.getString();
 					
 			
 			Class.forName( "com.mysql.jdbc.Driver");

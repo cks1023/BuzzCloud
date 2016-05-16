@@ -12,8 +12,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
-
+import java.util.Set;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -118,6 +119,7 @@ public class controller extends HttpServlet {
 			HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 
+			HashMap<String, String>preSplit = null;
 			String view = null;
 			commandAction com=null;
 			try {
@@ -126,7 +128,18 @@ public class controller extends HttpServlet {
 		           command = command.substring(request.getContextPath().length());
 		        
 		        com = (commandAction)commandMap.get(command);  
-		        view = com.requestPro(request, response);
+		        preSplit = com.requestPro(request, response);
+		        	view = preSplit.get("view");
+		        	if(preSplit.size() > 1){
+		        		preSplit.remove("view");
+		        	
+	        			Set<Entry<String, String>> set = preSplit.entrySet();
+        				Iterator<Entry<String, String>> it = set.iterator();
+	        			while(it.hasNext()){
+	        				Map.Entry<String, String> e = (Map.Entry<String, String>)it.next();
+        					request.setAttribute(e.getKey(), e.getValue());
+	        				}
+		        		}
 			}catch(Throwable e) {
 				e.printStackTrace();
 			}
