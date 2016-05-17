@@ -14,7 +14,7 @@ import property.commandAction;
 		
 			HashMap<String, String> h = new HashMap<String, String>();
 			h.put("view", "mainPage/mainPage.jsp");
-			
+			int III = 333;
 			return h;
 		}
 	}
